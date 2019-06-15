@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+  data:
+    image: postgres:10.4
+    restart: always
+    environment:
+      - POSTGRES_DB=Policies
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=super
+    volumes:
+      - ./postgres_db_policies.sql:/docker-entrypoint-initdb.d/db.sql
+    ports:
+      - "5432:5432"
+      
+      
+      
+
